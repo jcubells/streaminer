@@ -3,7 +3,7 @@
 
     <groupId>com.github.mayconbordin</groupId>
     <artifactId>streaminer</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.1-LA</version>
     <packaging>jar</packaging>
     <name>streaminer</name>
     <description>A collection of algorithms for mining data streams</description>
@@ -165,8 +165,8 @@
     <build>
         <plugins>
             
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
+		<!--     <plugin>
+       	    <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>1.4</version>
                 <configuration>
@@ -182,7 +182,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+	    </plugin> --> 
             
             <!-- MAVEN RELEASE -->
             <plugin>
@@ -194,7 +194,31 @@
                     </checkModificationExcludes>
                 </configuration>
             </plugin>
-            <!-- MAVEN RELEASE -->
+	    <!-- MAVEN RELEASE -->
+
+
+
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>manifest</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+          </archive>
+        </configuration>
+      </plugin>
         </plugins>
     </build>
 
