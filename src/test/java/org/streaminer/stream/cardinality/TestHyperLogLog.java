@@ -22,6 +22,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
@@ -143,7 +144,7 @@ public class TestHyperLogLog
             Double val = Math.random();
             String valString = val.toString();
             baseline.offer(valString);
-            guava128.offerHashed(hf128.hashString(valString).asLong());
+            guava128.offerHashed(hf128.hashString(valString, Charset.defaultCharset()).asLong());
             if (j > 0 && j % 1000000 == 0)
             {
                 System.out.println("current count: " + j);

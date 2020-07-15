@@ -7,6 +7,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.nio.charset.Charset;
+
 import static org.junit.Assert.*;
 
 /**
@@ -24,7 +27,7 @@ public class StableBloomFilterTest {
 
     @Before
     public void setUp() {
-        sbf = new StableBloomFilter<CharSequence>(50, 10, 5, Funnels.stringFunnel());
+        sbf = new StableBloomFilter<CharSequence>(50, 10, 5, Funnels.stringFunnel(Charset.defaultCharset()));
     }
     
     @After
